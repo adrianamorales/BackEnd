@@ -52,7 +52,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="index.html"><span>Metro</span></a>
+				<a class="brand" href="index.php"><span>Metro</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -314,7 +314,7 @@
  									<span>Account Settings</span>
 								</li>
 								<li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="login.php"><i class="halflings-icon off"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -334,28 +334,28 @@
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="index.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>	
-						<li><a href="messages.html"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
-						<li><a href="tasks.html"><i class="icon-tasks"></i><span class="hidden-tablet"> Tasks</span></a></li>
-						<li><a href="ui.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> UI Features</span></a></li>
-						<li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widgets</span></a></li>
+						<li><a href="index.php"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>	
+						<li><a href="messages.php"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
+						<li><a href="tasks.php"><i class="icon-tasks"></i><span class="hidden-tablet"> Tasks</span></a></li>
+						<li><a href="ui.php"><i class="icon-eye-open"></i><span class="hidden-tablet"> UI Features</span></a></li>
+						<li><a href="widgets.php"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widgets</span></a></li>
 						<li>
 							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Dropdown</span><span class="label label-important"> 3 </span></a>
 							<ul>
-								<li><a class="submenu" href="submenu.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 1</span></a></li>
-								<li><a class="submenu" href="submenu2.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 2</span></a></li>
-								<li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a></li>
+								<li><a class="submenu" href="submenu.php"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 1</span></a></li>
+								<li><a class="submenu" href="submenu2.php"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 2</span></a></li>
+								<li><a class="submenu" href="submenu3.php"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a></li>
 							</ul>	
 						</li>
-						<li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
-						<li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> Charts</span></a></li>
-						<li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> Typography</span></a></li>
-						<li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
-						<li><a href="table.html"><i class="icon-align-justify"></i><span class="hidden-tablet"> Tables</span></a></li>
-						<li><a href="calendar.html"><i class="icon-calendar"></i><span class="hidden-tablet"> Calendar</span></a></li>
-						<li><a href="file-manager.html"><i class="icon-folder-open"></i><span class="hidden-tablet"> File Manager</span></a></li>
-						<li><a href="icon.html"><i class="icon-star"></i><span class="hidden-tablet"> Icons</span></a></li>
-						<li><a href="login.html"><i class="icon-lock"></i><span class="hidden-tablet"> Login Page</span></a></li>
+						<li><a href="form.php"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
+						<li><a href="chart.php"><i class="icon-list-alt"></i><span class="hidden-tablet"> Charts</span></a></li>
+						<li><a href="typography.php"><i class="icon-font"></i><span class="hidden-tablet"> Typography</span></a></li>
+						<li><a href="gallery.php"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
+						<li><a href="table.php"><i class="icon-align-justify"></i><span class="hidden-tablet"> Tables</span></a></li>
+						<li><a href="calendar.php"><i class="icon-calendar"></i><span class="hidden-tablet"> Calendar</span></a></li>
+						<li><a href="file-manager.php"><i class="icon-folder-open"></i><span class="hidden-tablet"> File Manager</span></a></li>
+						<li><a href="icon.php"><i class="icon-star"></i><span class="hidden-tablet"> Icons</span></a></li>
+						<li><a href="login.php"><i class="icon-lock"></i><span class="hidden-tablet"> Login Page</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -375,107 +375,16 @@
 			<ul class="breadcrumb">
 				<li>
 					<i class="icon-home"></i>
-					<a href="index.html">Home</a> 
+					<a href="index.php">Home</a> 
 					<i class="icon-angle-right"></i>
 				</li>
-				<li><a href="#">Charts</a></li>
+				<li><a href="#">File Manager</a></li>
 			</ul>
 
-			<div class="row-fluid">
-				
-				<div class="box">
-					<div class="box-header">
-						<h2><i class="halflings-icon list-alt"></i><span class="break"></span>Chart with points</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						<div id="sincos"  class="center" style="height:300px;" ></div>
-						<p id="hoverdata">Mouse position at (<span id="x">0</span>, <span id="y">0</span>). <span id="clickdata"></span></p>
-					</div>
-				</div>
-				
-				<div class="box">
-					<div class="box-header">
-						<h2><i class="halflings-icon list-alt"></i><span class="break"></span>Flot</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						<div id="flotchart" class="center" style="height:300px"></div>
-					</div>
-				</div>
-				
-				<div class="box">
-					<div class="box-header">
-						<h2><i class="halflings-icon list-alt"></i><span class="break"></span>Stack Example</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						 <div id="stackchart" class="center" style="height:300px;"></div>
-
-						<p class="stackControls center">
-							<input class="btn" type="button" value="With stacking">
-							<input class="btn" type="button" value="Without stacking">
-						</p>
-
-						<p class="graphControls center">
-							<input class="btn-primary" type="button" value="Bars">
-							<input class="btn-primary" type="button" value="Lines">
-							<input class="btn-primary" type="button" value="Lines with steps">
-						</p>
-					</div>
-				</div>
-
-			</div><!--/row-->
-			
-			<div class="row-fluid sortable">
-				<div class="box span6">
-					<div class="box-header">
-						<h2><i class="halflings-icon list-alt"></i><span class="break"></span>Pie</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-							<div id="piechart" style="height:300px"></div>
-					</div>
-				</div>
-			
-				<div class="box span6">
-					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon list-alt"></i><span class="break"></span>Donut</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						 <div id="donutchart" style="height: 300px;"></div>
-					</div>
-				</div>
-			
-			</div><!--/row-->
-		
-			<hr>
-		
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header">
-						<h2><i class="halflings-icon list-alt"></i><span class="break"></span>Realtime</h2>
+						<h2><i class="halflings-icon picture"></i><span class="break"></span>File Manager</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -483,33 +392,16 @@
 						</div>
 					</div>
 					<div class="box-content">
-						 <div id="realtimechart" style="height:190px;"></div>
-						 <p>You can update a chart periodically to get a real-time effect by using a timer to insert the new data in the plot and redraw it.</p>
-						 <p>Time between updates: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> milliseconds</p>
+						<div class="alert alert-info">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							<i class="halflings-icon info-sign"></i> As its a demo, you currently have read-only permission, in your server you may do everything like, upload or delete. It will work on a server only.
+						</div>
+						<div class="file-manager"></div>
 					</div>
-				</div>
+				</div><!--/span-->
+			
 			</div><!--/row-->
-			
-			<div class="row-fluid">
-				
-				<div class="widget span6" onTablet="span6" onDesktop="span6">
-					<h2><span class="glyphicons facebook"><i></i></span>Facebook Fans</h2>
-					<hr>
-					<div class="content">
-						<div id="facebookChart" style="height:300px" ></div>
-					</div>
-				</div><!--/span-->
-				
-				<div class="widget span6" onTablet="span6" onDesktop="span6">
-					<h2><span class="glyphicons twitter"><i></i></span>Twitter Followers</h2>
-					<hr>
-					<div class="content">
-						<div id="twitterChart" style="height:300px" ></div>
-					</div>
-				</div><!--/span-->
-			
-			</div>
-		
+
 		
 
 	</div><!--/.fluid-container-->
