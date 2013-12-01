@@ -1,13 +1,72 @@
+<?php
+
+	function isLoggedIn(){
+    //if they are logged in outputs a link to loggout
+    if(isset($_SESSION['valid']) && isset($_SESSION['userid']) ){
+      return true;  
+    }
+    return false;
+  }
+  session_start();
+  //test to see if logged in
+  if(isLoggedIn()){
+    header('Location: index.php');
+    die();
+  }
+  if (isset($_POST['username']) ) {
+    include("config.inc.php");
+    $dbname = $config['db'];
+    $user = $config['user'];
+    $pass = $config['pass'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $conn = new PDO('mysql:host=localhost;dbname='.$dbname, $user, $pass);
+    //connect to the database here
+    $sql = "SELECT * FROM users WHERE email = '$username';";
+    $stmt = $conn->query($sql) or die("failed!");
+    $rows = $stmt->fetchAll();
+    $n = count($rows);
+    if($n < 1) //no such user exists
+    {   
+        header('Location: login.php?err=failed');
+        die();
+    }
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+    $hash = sha1($userData["salt"].$password);
+    $salt = $userData['salt'];
+    function validateUser() {
+      session_regenerate_id (); //this is a security measure
+      $_SESSION['valid'] = 1;
+      $_SESSION['userid'] = $_POST['username'];
+      $_SESSION['userid'] = $_POST['username'];
+    }
+    if($hash != $userData['password']){
+        header('Location: login.php?err=failed');
+    }
+    else{
+      validateUser();
+      $sql = "UPDATE info set lastSignOn = NOW() where email = :userid";
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam(':userid',  $_SESSION['userid']);
+      $stmt->execute();
+      header('Location: index.php');
+      die();
+    }
+  }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Metro Admin Template - Metro UI Style Bootstrap Admin Template</title>
+	<title>Shiny Studios</title>
 	<meta name="description" content="Metro Admin Template.">
-	<meta name="author" content="Łukasz Holeczek">
-	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+	<meta name="author" content="Nicholas Laferriere">
 	<!-- end: Meta -->
 	
 	<!-- start: Mobile Specific -->
@@ -52,11 +111,16 @@
 			<div class="row-fluid">
 				<div class="login-box">
 					<div class="icons">
-						<a href="index.php"><i class="halflings-icon home"></i></a>
+						<a href="/ShinyStudios/"><i class="halflings-icon home"></i></a>
 						<a href="#"><i class="halflings-icon cog"></i></a>
 					</div>
 					<h2>Login to your account</h2>
-					<form class="form-horizontal" action="index.php" method="post">
+					<?php
+						if (isset($_GET['err']) ) {
+							echo "<p class=\"text-error\">Invalid Username or Password!</p>";
+						}
+					?>
+					<form class="form-horizontal" action="login.php" method="post">
 						<fieldset>
 							
 							<div class="input-prepend" title="Username">
@@ -70,8 +134,6 @@
 								<input class="input-large span10" name="password" id="password" type="password" placeholder="type password"/>
 							</div>
 							<div class="clearfix"></div>
-							
-							<label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
 
 							<div class="button-login">	
 								<button type="submit" class="btn btn-primary">Login</button>
@@ -81,7 +143,7 @@
 					<hr>
 					<h3>Forgot Password?</h3>
 					<p>
-						No problem, <a href="#">click here</a> to get a new password.
+						No problem, <a href="mailto:laferriere.nick@gmail.com">eMail the admin</a> to get a new password.
 					</p>	
 				</div><!--/span-->
 			</div><!--/row-->

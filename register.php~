@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Accel Resources</title>
+  </head>
+  <body>
+    <div class="contain">
+      <header>
+        <div class="header-container">
+          <div class="headerdesc">
+            <h2>Knowledge Cafe</h2>
+          </div>
+        </div>
+      </header>
+      <div class="body">
+        <section class="main register">
+          <h2><span>Register</span></h2>
+          <?php
+            function isLoggedIn()
+            {
+              //if they are logged in outputs a link to loggout
+              if(isset($_SESSION['valid']) && isset($_SESSION['userid']) ){
+                return true;  
+              }
+              return false;
+            }
+            session_start();
+            //test to see if logged in
+            if(isLoggedIn()){
+              header('Location: knowledge.php');
+              die();
+            }
+            //seeing if thier was a post back to this
+            //page for creating a new user
+            if (isset($_POST['submitted']) ) {
+              $email = $_POST['email'];
+              $pass1 = $_POST['pass1'];
+              $pass2 = $_POST['pass2'];
+              $email = mysql_real_escape_string($email);
+              $pass1 = mysql_real_escape_string($pass1);
+              $pass2 = mysql_real_escape_string($pass2);
+              //this is a boolan that if set to 
+              //false won't create the new user
+              $run = true;
+              if($pass1 != $pass2){
+                echo "<p>password mismatch</p>";
+                $run = false;
+              }
+              if(strlen($email) > 50){
+                echo "<p>invalid email (too long)</p>";
+                $run = false;
+              }
+              if(strlen($pass1) < 1){
+                echo "<p>please enter in a password</p>";
+                $run = false;
+              }
+              if(strlen($email) < 6){
+                echo "<p>please enter in an email</p>";
+                $run = false;
+              }
+              if(strlen($pass1) < 0){
+                echo "<p>please enter in a password</p>";
+                $run = false;
+              }
+              //creates a 3 character sequence
+              //for the salt
+              function createSalt()
+              {   
+                $string = md5(uniqid(rand(), true));
+                return substr($string, 0, 3);
+              }
+              $salt = createSalt();
+              $hash = sha1($salt.$pass1);
+              //conencted to database
+              include("config.inc.php");
+              $dbname = $config['db'];
+              $user = $config['user'];
+              $pass = $config['pass'];
+              $conn = new PDO('mysql:host=localhost;dbname='.$dbname, $user, $pass);
+              //sanitizing the text
+              $email = mysql_real_escape_string($email);
+              ///checking to see if user name is already userd
+              $sql = "SELECT * FROM users WHERE email = '$username';";
+              $stmt = $conn->query($sql) or die("failed!");
+              $rows = $stmt->fetchAll();
+              $n = count($rows);
+              if($n >= 1) //user exists already exist
+              {   
+                echo "<p>this email is already in use</p>";
+                $run = false;
+              }
+              if($run){
+                $sql = "INSERT INTO users ( email, password, salt ) VALUES ( '$email' , '$hash' , '$salt' );";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+              }
+              //you can change these values to
+              //determine their permissions
+              $default = "false";
+              $cafe = "true";
+              if($run){
+                $sql = "INSERT INTO permissions ( email, admin, cafe ) VALUES ( '$email' , '$default' , '$cafe' );";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+              }
+              //now inserting additional info if any provided
+              //into varibles
+              $first;
+              if( isset($_POST['first'])  ){
+                $first = $_POST['first'];
+                $first = mysql_real_escape_string($first);
+              }
+              if( isset($_POST['last']) ){
+                $last = $_POST['last'];
+                $last = mysql_real_escape_string($last);
+              }
+              if( isset($_POST['phone']) ){
+                $phone = $_POST['phone'];
+                $phone = mysql_real_escape_string($phone);
+              }
+              if( isset($_POST['company']) ){
+                $company = $_POST['company'];
+                $company = mysql_real_escape_string($company);
+              }
+              if( isset($_POST['street']) ){
+                $street = $_POST['street'];
+                $street = mysql_real_escape_string($street);
+              }
+              if( isset($_POST['providence']) ){
+                $providence = $_POST['providence'];
+                $providence = mysql_real_escape_string($providence);
+              }
+              if( isset($_POST['country']) ){
+                $country = $_POST['country'];
+              }
+              if($run){
+                $sql = "INSERT INTO info ( first, last, email, phone, company, street, providence, country ) VALUES ( '$first', '$last', '$email', '$phone', '$company', '$street', '$providence', '$country' );";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+              }
+              header('Location: login.php');
+            }
+          ?>
+          
+          <p class="register_info">
+              Only Email and Password fields are required, but we encourage you to fill out all fields in order to allow us to service you better
+          </p>
+          <form name="register" action="register.php" id="register" method="post">
+              *Email: <input type="email" name="email" maxlength="50" /><br />
+              *Password: <input type="password" name="pass1"/><br />
+              *Password Again: <input type="password" name="pass2"/><br />
+              First Name: <input type="text" name="first" maxlength="30" /><br />
+              Last Name: <input type="text" name="last" maxlength="30"/><br />
+              Phone Number: <input type="text" name="phone" maxlength="12"/><br />
+              Company: <input type="text" name="company" maxlength="80"/><br />
+              Address: <input type="text" name="street" maxlength="80"/><br />
+              Providence: <input type="text" name="providence" maxlength="50"/><br />
+              Country: <input type="text" name="country" maxlength="50"/><br />
+              <input type='submit' name='Submit' value='Submit' /><br />
+              <input type='hidden' name='submitted' id='submitted' value='1'/><br />
+          </form>
+          <p class="login">If you already have an account <a href="login.php">click here</a> to login</p>
+         </section>
+      </div>
+      <footer>
+        <p>&copy;2012 Accel Resource Corporation All Rights Reserved</p>
+      </footer>
+    </div>
+  </body>
+</html>
