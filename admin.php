@@ -8,7 +8,7 @@
   }
   function isAdmin(){
     //if they are logged in outputs a link to loggout
-    if($_SESSION['userid'] == "lafern@rpi.edu" or $_SESSION['userid'] == "admin@shiny.com"){
+    if($_SESSION['userid'] == "admin@shinystudiosonline.com" or $_SESSION['userid'] == "admin@shiny.com"){
       return true;  
     }
     return false;
