@@ -8,7 +8,7 @@
   }
   function isAdmin(){
     //if they are logged in outputs a link to loggout
-    if($_SESSION['userid'] == "lafern@rpi.edu" or $_SESSION['userid'] == "admin@shiny.com"){
+    if($_SESSION['userid'] == "admin@shinystudiosonline.com" or $_SESSION['userid'] == "admin@shiny.com"){
       return true;  
     }
     return false;
@@ -93,7 +93,7 @@
             <!-- start: User Dropdown -->
             <li class="dropdown">
               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="halflings-icon white user"></i> Łukasz Holeczek
+                <i class="halflings-icon white user"></i>Logout
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
